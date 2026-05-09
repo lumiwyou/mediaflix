@@ -3,7 +3,7 @@ version: 29.3.1
 services:
   postgres:
     image: postgres:17
-    restart: always
+    restart: no
     user: postgres
     secrets:
       - db-password
@@ -12,7 +12,7 @@ services:
     environment:
       - POSTGRES_DB=example
       - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
-    expose:
+    ports:
       - 5432
     healthcheck:
       test: [ "CMD", "pg_isready" ]
@@ -27,8 +27,13 @@ services:
       - ./:/usr/src/app
       - /usr/src/app/node_modules
     ports:
-      - 8000:8000
+      - 8000
+    expose:
+      - 8000
     command: npm run dev
+    depends_on:
+      postgres:
+        condition: service_healthy
 
 volumes:
   db-data:
