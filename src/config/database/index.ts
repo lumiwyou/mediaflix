@@ -7,6 +7,7 @@ dotenv.config({ path: config.environment_path })
 export const database = mysql.createConnection({
   host: process.env.PGHOST,
   user: process.env.PGUSER,
+  port: process.env.PGPORT as unknown as number,
   password: process.env.PGPASSWORD,
   database: process.env.PGDATABASE,
   connectTimeout: 10000
@@ -15,6 +16,7 @@ export const database = mysql.createConnection({
 console.debug(`Database connection configuration:
   host: ${process.env.PGHOST}
   user: ${process.env.PGUSER}
+  port: ${process.env.PGPORT}
   password: ${process.env.PGPASSWORD?.replaceAll(/./g, '*')}
   database: ${process.env.PGDATABASE}
   `)
