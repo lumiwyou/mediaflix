@@ -1,22 +1,14 @@
+version: 29.3.1
+
 services:
-  server:
-    build:
-      context: .
-    environment:
-      NODE_ENV: production
-    ports:
-      - 8000:8000
-    depends_on:
-      db:
-        condition: service_healthy
-  db:
-    image: postgres
+  postgres:
+    image: postgres:17
     restart: always
     user: postgres
     secrets:
       - db-password
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - ./db:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=example
       - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
@@ -27,9 +19,19 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+  api:
+    build:
+      context: .
+      target: development
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 8000:8000
+    command: npm run dev
+
 volumes:
   db-data:
 secrets:
   db-password:
     file: db/password.txt
-
