@@ -4,16 +4,19 @@
  * @description Service set up, API routes and endpoints, etc.
  */
 
-import express from "express";
-import morgan from "morgan";
-import config from "./settings.json" with { type: 'json' };
-import routes from "./src/routes/routes.js";
+import express from "express"
+import morgan from "morgan"
+import config from "./settings.json" with { type: 'json' }
+import api from "./src/modules/v1"
+import connection from "src/config/database"
 
-const app = new express();
+const app = express();
 
 // App configuration
-app.use(routes);
+app.use(api);
 app.use(express.static("public"));
+
+connection.connect()
 
 if(config.logging.enabled) {
     app.use(morgan(config.logging.format));
@@ -21,4 +24,6 @@ if(config.logging.enabled) {
 
 app.listen(config.network.port, config.network.host, () => {
     console.info(`Running up service @ http://${config.network.host}:${config.network.port}`);
-});
+})
+
+// connection.close()
