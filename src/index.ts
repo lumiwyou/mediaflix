@@ -6,9 +6,10 @@
 
 import express from "express"
 import morgan from "morgan"
-import config from "./settings.json" with { type: 'json' }
-import api from "./src/modules/v1/index.ts"
-import database from "./src/config/database/index.ts"
+import config from "../settings.json" with { type: 'json' }
+import api from "./modules/v1/index.ts"
+import database from "./config/database/index.ts"
+import { exit } from "node:process"
 
 const app = express();
 
@@ -16,7 +17,13 @@ const app = express();
 app.use(api);
 app.use(express.static("public"));
 
-database.connect()
+try {
+    console.info("Connecting to database ...")
+    database.connect()
+}catch(exception) {
+    console.error(`Unable to connect to database: ${exception}`)
+    exit
+}
 
 if(config.logging.enabled) {
     app.use(morgan(config.logging.format));
