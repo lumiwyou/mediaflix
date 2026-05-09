@@ -5,5 +5,3 @@ export interface User {
     deletion: boolean,
     locked: boolean
 }
-
-export default User
