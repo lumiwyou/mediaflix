@@ -6,6 +6,8 @@
 # Mediaflix
 Open-source self-hosted and easily deployable media streaming service.
 
+![screenshot](./docs/assets/webui.png)
+
 # Packages
 Mediaflix uses the following packages:
 
