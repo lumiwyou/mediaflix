@@ -1,10 +1,13 @@
 import mysql from "mysql"
-import config from "../../../settings.json"
+import dotenv from "dotenv"
+import config from "../../../settings.json" with { type: 'json' }
 
-export const connection = mysql.createConnection({
-  host: "127.0.0.1",
-  user: "admin",
-  password: "password"
+dotenv.config({ path: config.environment_path })
+
+export const database = mysql.createConnection({
+  host: process.env.PGHOST,
+  user: process.env.PGUSER,
+  password: process.env.PGPASSWORD
 });
 
-export default connection
+export default database

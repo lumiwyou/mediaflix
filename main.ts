@@ -7,8 +7,8 @@
 import express from "express"
 import morgan from "morgan"
 import config from "./settings.json" with { type: 'json' }
-import api from "./src/modules/v1"
-import connection from "src/config/database"
+import api from "./src/modules/v1/index.ts"
+import database from "./src/config/database/index.ts"
 
 const app = express();
 
@@ -16,7 +16,7 @@ const app = express();
 app.use(api);
 app.use(express.static("public"));
 
-connection.connect()
+database.connect()
 
 if(config.logging.enabled) {
     app.use(morgan(config.logging.format));
@@ -26,4 +26,4 @@ app.listen(config.network.port, config.network.host, () => {
     console.info(`Running up service @ http://${config.network.host}:${config.network.port}`);
 })
 
-// connection.close()
+// database.close()
