@@ -6,5 +6,15 @@
     "network":{
         "host":"127.0.0.1",
         "port":8000
+    },
+    "database":{
+        "media":{
+            "host":"127.0.0.1",
+            "port":5432
+        },
+        "users":{
+            "host":"127.0.0.1",
+            "port":5432
+        }
     }
 }
