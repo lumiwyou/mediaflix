@@ -12,7 +12,7 @@ services:
     environment:
       - POSTGRES_DB=example
       - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
-    ports:
+    expose:
       - 5432
     healthcheck:
       test: [ "CMD", "pg_isready" ]
@@ -27,9 +27,7 @@ services:
       - ./:/usr/src/app
       - /usr/src/app/node_modules
     ports:
-      - 8000
-    expose:
-      - 8000
+      - 8000:8000
     command: npm run dev
     depends_on:
       postgres:

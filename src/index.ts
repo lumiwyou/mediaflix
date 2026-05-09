@@ -19,6 +19,7 @@ app.use(express.static("public"));
 
 try {
     console.info("Connecting to database ...")
+    // TODO: Implement checking and verbose message if connected
     database.connect()
 }catch(exception) {
     console.error(`Unable to connect to database: ${exception}`)
