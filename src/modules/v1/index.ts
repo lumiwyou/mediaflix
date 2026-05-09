@@ -4,6 +4,6 @@ import { Router } from "express"
 import user from "./user/index.ts"
 
 const api = Router()
-    .use("/user", user)
+    .use("/users", user)
 
-export default Router().use("/api", api)
+export default Router().use("/api/v1", api)
