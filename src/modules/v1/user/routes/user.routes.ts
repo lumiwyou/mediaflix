@@ -1,11 +1,11 @@
 import { Router } from "express"
 import userController from "../controller/user.controller.ts"
 
-export const router = Router()
+export const usersRouter: Router = Router()
 
-router.get("/:id", userController.getById)
-router.post("/", userController.createUser)
-router.delete("/", userController.deleteUser)
-router.put("/", userController.updateUser)
+usersRouter.get("/users", userController.getById)
+usersRouter.post("/users", userController.createUser)
+usersRouter.delete("/users", userController.deleteUser)
+usersRouter.put("/users", userController.updateUser)
 
-export default router
+export default usersRouter

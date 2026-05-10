@@ -1,9 +1,9 @@
 import { Router } from "express"
 
-/* Import the modules */
-import user from "./user/index.ts"
+/* Import the modules by path "./<module-directory>/index.ts" */
+import usersRouter from "./user/index.ts"
 
-const api = Router()
-    .use("/users", user)
+const apiRouter_v1: Router = Router()
+    .use(usersRouter)
 
-export default Router().use("/api/v1", api)
+export default apiRouter_v1
