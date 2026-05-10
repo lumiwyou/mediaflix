@@ -6,7 +6,14 @@ import type { NextFunction, Request, Response } from "express";
 // Use async because otherwise we're gonna back up the entire queue
 // TODO: This should be removed in production
 export async function getById(req: Request, res: Response, next: NextFunction) {
-    const user: User = await userService.getById(req.params.uuid as string);
+    if(req.query.uuid == undefined) {
+        res.status(400).json({
+            success: false,
+            message: "No parameter id was received"
+        })
+    }
+
+    const user: User = await userService.getById(req.query.uuid as string);
 
     return res.status(200).json({
         success: true,
@@ -40,9 +47,9 @@ export async function createUser(req: Request, res: Response, next: NextFunction
 export async function deleteUser(req: Request, res: Response, next: NextFunction) {
     // TODO: Implement cookie check before deletion
     // Require email and password as well for confirmation through authentication
-    if(req.params.id == undefined
-        || req.params.email == undefined
-        || req.params.password_hash == undefined
+    if(req.query.uuid == undefined
+        || req.query.email == undefined
+        || req.query.password_hash == undefined
     ) {
         res.status(400).json({
             success: false,
@@ -52,9 +59,9 @@ export async function deleteUser(req: Request, res: Response, next: NextFunction
     }
 
     const modify_user: User = {
-        uuid: req.params.id as string,
-        email: req.params.email as string,
-        password_hash: req.params.password_hash as string,
+        uuid: req.query.uuid as string,
+        email: req.query.email as string,
+        password_hash: req.query.password_hash as string,
         deletion: true,
         locked: true
     }
@@ -75,9 +82,9 @@ export async function deleteUser(req: Request, res: Response, next: NextFunction
 
 export async function updateUser(req: Request, res: Response, next: NextFunction) {
     const modify_user: User = {
-        uuid: req.params.id as string,
-        email: req.params.email as string,
-        password_hash: req.params.password_hash as string,
+        uuid: req.query.uuid as string,
+        email: req.query.email as string,
+        password_hash: req.query.password_hash as string,
         deletion: false,
         locked: false
     }
