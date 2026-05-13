@@ -1,4 +1,4 @@
-![Logo](docs/assets/mf-logo-dark.png)
+![Logo](docs/assets/logo.png)
 
 > [!NOTE]
 > This project started 6 may 2026 and is still early work-in-progress.
