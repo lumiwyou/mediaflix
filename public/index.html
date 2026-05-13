@@ -3,68 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
-    <script type="script" src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <title>Mediaflix</title>
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/scss/style.css">
 </head>
-<body class="d-flex flex-column min-vh-100" style="background-color: #121212; color:#E0E0E0;">
-    <header class="d-flex flex-row p-2" style="height:70px; border-bottom:1px solid #444444; background-color: #121212;" >
-        <img src="assets/images/logo.png" alt="">
-        <nav class="w-100 d-flex align-items-center">
-            <ul class="nav w-100">
-                <li class="nav-item">
-                    <a href="/library" class="nav-link" style="color:#E0E0E0; border-left:1px solid #444444;">Library</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/upload" class="nav-link" style="color:#E0E0E0;">Upload</a>
-                </li>
-            </ul>
-            <img src="assets/images/account.png" alt="" height="100%" width="auto">
+<body class="d-flex flex-column min-vh-100 body">
+    <header class="border-bottom border-dark d-flex flex-row p-2">
+        <img class="header" src="assets/images/logo.png" alt="logo">
+        <nav class="nav d-flex flex-row w-100 p-2">
+            <div class="nav-item border-start border-dark">
+                <a href="" class="nav-link nav-link-override">Home</a>
+            </div>
+            <div class="nav-item">
+                <a href="" class="nav-link nav-link-override">Library</a>
+            </div>
+            <div class="nav-item">
+                <a href="" class="nav-link nav-link-override">Account</a>
+            </div>
+            <div class="nav-item">
+                <a href="" class="nav-link nav-link-override">Settings</a>
+            </div>
         </nav>
     </header>
-    <main class="flex-fill">
-        <div class="p-3 text-white">
-            <div id="content-container">
-                <!-- Content here -->
-            </div>
-        </div>
+    <main class="main flex-grow-1 d-flex flex-column" id="spa-content">
+        <!-- Content -->
     </main>
-    <footer class="bg-black p-2 text-white d-flex flex-column" style="box-shadow: 1px -1px 32px 0px rgba(0,0,0,0.75);
--webkit-box-shadow: 1px -1px 32px 0px rgba(0,0,0,0.75);
--moz-box-shadow: 1px -1px 32px 0px rgba(0,0,0,0.75);">
-        <nav class="nav justify-content-end" style="font-size:x-small;">
-            <a href="" class="nav-link" style="color:#E0E0E0;">Contact</a>
-            <a href="" class="nav-link" style="color:#E0E0E0;">Support</a>
-            <a href="" class="nav-link" style="color:#E0E0E0;">About</a>
-            <p class="nav-link text-uppercase" style="color:#E0E0E0; border-left:1px solid #E0E0E0;">copyright © Lumi Hyväri</p>
-        </nav>
+    <footer class="footer border-top border-dark d-flex flex-row justify-content-center p-2">
+        Copyright (C) Lumi Hyväri
     </footer>
-    <div>
-        <!-- add `show` class to offcanvas to show -->
-        <div class="offcanvas offcanvas-top bg-black" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel" style="color:#E0E0E0;">
-        <div class="offcanvas-header">
-            <img src="assets/images/logo.png" alt="" srcset="" height="80px">
-            <h5 class="offcanvas-title" id="offcanvasLabel">Not logged in</h5>
-        </div>
-        <div class="offcanvas-body" style="box-shadow: 2px 4px 16px 0px rgba(0,0,0,0.75);
--webkit-box-shadow: 2px 4px 16px 0px rgba(0,0,0,0.75);
--moz-box-shadow: 2px 4px 16px 0px rgba(0,0,0,0.75);">
-            <p>
-                You are not logged in to any account right now. Please login below.
-            </p>
-            <form action="" method="get">
-                <input type="email" name="" id="" placeholder="Email" class="border-0 p-2">
-                <input type="password" name="" id="" placeholder="Password" class="border-0 p-2">
-                <button type="submit" class="border-0 p-2">Login</button>
-            </form>
-        </div>
-    </div>
-    <script>
-        // Redirect user to library per default
-        /*if(location.pathname == "/") {
-            location.pathname = "/library"
-        }*/
-    </script>
-</div>
 </body>
 </html>
