@@ -1,0 +1,28 @@
+:root {
+    --default-fg-color: rgb(241, 241, 241);;
+}
+
+.body {
+    background-color: rgb(13, 13, 13);
+    color: var(--default-fg-color);
+}
+
+.header {
+    height:50px;
+}
+
+.main {
+    background-color: rgb(0, 0, 0);
+}
+
+.footer {
+    height:50px;
+}
+
+.nav-link-override {
+    color: var(--default-fg-color);
+}
+
+.section-override {
+    padding:1em;
+}
