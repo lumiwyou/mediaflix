@@ -25,4 +25,4 @@ export async function getLibraryById(req: Request, res: Response, next: NextFunc
     })
 }
 
-export default { getLibraryById, createLibrary, updateLibrary, deleteLibrary }
+export default { getLibraryById, }//createLibrary, updateLibrary, deleteLibrary }
