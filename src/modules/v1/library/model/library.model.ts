@@ -1,3 +1,4 @@
 export interface Library {
-    libraryId: number
+    libraryId: number,
+    name: string
 }
