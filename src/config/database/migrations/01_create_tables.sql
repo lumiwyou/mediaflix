@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS library (
+    libraryId INT AUTO NOT NULL DEFAULT 0,
+    userId VARCHAR(255) NOT NULL,
+    name VARCHAR(255) DEFAULT 'Your library'
+)
