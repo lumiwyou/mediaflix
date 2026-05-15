@@ -1,24 +1,15 @@
-import database from "../../../../config/database/index.ts"
+import { database } from "../../../../config/database/index.ts"
 import { type User } from "../model/user.model.ts"
 
 export async function getUserById(userId: string) {
-    const user: User = await new Promise<User>((resolve, reject) => database.query(`
-        SELECT users.email FROM users WHERE users.uuid == '${userId}'
-        `, (error: any, results: any) => {
-            if(error) reject(false)
-
-            const user: User = {
-                userId: userId,
-                email: results[0].email,
-                password_hash: "", // Do not send out hash
-                deletion: results[0].deletion,
-                locked: results[0].locked
-            }
-
-            resolve(user)
-        }))
-
-    return user
+    const [rows, fields] = await database.query(`SELECT users.userId, users.email, users.deletion, users.locked FROM users WHERE users.userId == '${userId}'`)
+    return {
+        userId: rows[0].userId as unknown as string,
+        email: rows[0].email,
+        password_hash: "",
+        deletion: rows[0].deletion,
+        locked: rows[0].locked
+    }
 }
 
 export async function createUser(user: User) {
@@ -57,27 +48,18 @@ export async function updateUser(modify_user: User) {
 }
 
 export async function getUsers() {
-    return await new Promise<User[]>((resolve, reject) => database.query(`
-        SELECT * FROM users
-        `, (error: any, results: any) => {
-            if(error) reject(false)
-
-            let users: User[] = []
-
-            results.array.forEach((found_user: any) => {
-                const user: User = {
-                    userId: found_user.userId,
-                    email: found_user.email,
-                    password_hash: found_user.password_hash,
-                    deletion: found_user.deletion,
-                    locked: found_user.locked
-                }
-
-                users.push(user)
-            });
-
-            resolve(users)
-        }))
+    const [rows, fields] = await database.query("SELECT users.userId, users.email, users.deletion, users.locked FROM users")
+    let users: User[] = [];
+    rows.array.forEach((row: {userId: string, email: string, deletion: boolean, locked: boolean}) => {
+        users.push({
+            userId: row.userId,
+            email: row.email,
+            password_hash: "",
+            deletion: row.deletion,
+            locked: row.locked
+        })
+    });
+    return users
 }
 
 export default { getUserById, createUser, deleteUser, updateUser, getUsers }
