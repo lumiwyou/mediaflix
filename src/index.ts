@@ -8,7 +8,7 @@ import express from "express"
 import morgan from "morgan"
 import config from "../settings.json" with { type: 'json' }
 import apiRouter_v1 from "./modules/v1/index.ts"
-import database from "./config/database/index.ts"
+import { database, bootstrapDatabase, insertTestDatabase } from "./config/database/index.ts"
 import { exit } from "node:process"
 import printRegisteredRoutes from "./utils/routes.ts"
 
@@ -35,6 +35,9 @@ try {
     console.error(`Unable to connect to database: ${exception}`)
     exit
 }
+
+bootstrapDatabase()
+insertTestDatabase(50, 3)
 
 if(config.logging.enabled) {
     app.use(morgan(config.logging.format))
